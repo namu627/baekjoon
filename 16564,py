@@ -1,0 +1,23 @@
+import sys
+input=sys.stdin.readline
+
+n,k=map(int, input().split()) #n은 캐릭터 수, k는 총 올릴 수 있는 레벨 합
+x=[] #캐릭터들의 레벨
+for _ in range(n):
+    x.append(int(input()))
+x.sort()
+t=0 #팀 목표 레벨
+start=x[0] #start값은 캐릭터 레벨중에 가장 낮은값
+end=x[-1]+k #end값은 캐릭터 레벨중에 가장 큰값+올릴수 있는 레벨의 합=최대 레벨(하나일경우 그냥 더하면 최대레벨)
+while start<=end: #start값이 end보다 커지면 종료
+    mid=(start+end)//2 #mid는 팀 목표레벨. 목표레벨 맞춰서 캐릭터 레벨 올릴건데 k값이랑 비교해서 남으면 목표치 올리고 부족하면 목표치 낮출거임
+    level=0 #올린 레벨
+    for i in range(n): #캐릭터들 레벨중에서
+        if x[i]<mid: #목표레벨 보다 작은애들만 골라서 (목표레벨보다 레벨 높은애들은 레벨 안올려줘도 되니깐)
+            level=level+mid-x[i] #목표레벨로 똑같이 맞춰주고 올려준 레벨의 총 합을 level 변수에 저장
+    if level<=k: #캐릭터 레벨 올린 총 합이 k값보다 작거나 같으면
+        start=mid+1 #목표레벨 올려서 다시 탐색해보기
+        t=mid #답에 현재 목표레벨 저장
+    else: #캐릭터 레벨 올린 총 합이 k값보다 크면 목표레벨이 너무 높다는거니까
+        end=mid-1 #목표레벨 낮춰서 다시 탐색해보기
+print(t)
