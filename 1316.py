@@ -6,6 +6,6 @@ for _ in range(n):
         if word[i]==word[i+1]:
             continue
         elif word[i] in word[i+1:]:
-            ans-=-1
+            ans=ans-1
             break
 print(ans)
