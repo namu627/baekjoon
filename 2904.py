@@ -1,5 +1,5 @@
-n=int(input())
+n=int(input()) #이 문제는 규칙만 찾는다면 아주 간단합니다.
 ans=2
 for i in range(n):
-    ans=ans*2-1
+    ans=ans*2-1 #2개부터 시작해서 과정을 한번 거칠때마다 지금 한 변 점 개수에 두배해서 1빼면 그게 과정을 거친 정사각형의 한 변 점 개수이기 때문
 print(ans**2)
