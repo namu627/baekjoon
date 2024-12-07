@@ -15,13 +15,13 @@ class Character:
 class DetectiveGame:
     def __init__(self):
         self.characters = [
-            Character("정준영", "장발이야", "운동복을 입었어", "운동화를 신었어"),
+            Character("전환", "장발이야", "운동복을 입었어", "운동화를 신었어"),
             Character("이동현", "파란 모자를 썼어", "양복을 입었어", "구두를 신었어"),
             Character("김정석", "노랑 머리야", "무스탕을 입었어", "아무것도 안 신고 있었어"),
-            Character("전환", "스님 머리야", "셔츠를 입었어", "슬리퍼 신었어"),
+            Character("정준영", "스님 머리야", "셔츠를 입었어", "슬리퍼 신었어"),
             Character("박정은", "단발머리야", "치마를 입었어", "어그를 신었어"),
             Character("김현수", "곱슬머리야", "반팔티를 입었어", "크록스를 신었어"),
-            Character("이준기", "허리까지 머리카락이 있어", "아무것도 안입었어", "양말만 신고있어")
+            Character("이준기", "허리까지 머리카락이 있어", "아무것도 안 입었어", "양말만 신고있었어")
         ]
 
         ##### 3. 게임 초기 세팅을 해봅시다. #######################################################
@@ -39,29 +39,29 @@ class DetectiveGame:
         self.clues=[] #단서들
         self.lives=2 #정답 기회
         
-        
-
     def show_intro(self):
         print("탐정 게임에 오신 것을 환영합니다.")
         time.sleep(1)
 
         ##### 4. 탐정님의 이름을 알려주세요! Python으로 입력을 받아 봅시다. ###########
 
-        self.detective_name=input("탐정님의 이름을 알려주세요! ")
-
+        self.detective_name=input("탐정님의 이름을 알려주세요!: ")
 
         ##### 5. 게임의 캐릭터 중 한 명을 랜덤으로 희생자로 지정하고, 희생자로 지정된 캐릭터를 목록에서 제거해주세요! #############
 
         self.victim=random.choice(self.characters) #희생자 랜덤지정
         self.characters.remove(self.victim) #희생자 캐릭터 제거
-        
-
         self.murderer = random.choice(self.characters) #범인 랜덤 지정
-        dying_message_type = random.choice(["hair", "clothes", "shoes"])
+        dying_message_type = random.choice(["hair", "clothes", "shoes"]) #알려줄 단서 종류 랜덤 지정
 
         ###### 6. 캐릭터들의 속성 중 하나를 다잉메시지로 출력해주세요. match_dying_message 함수를 참고해서 작성하시면 됩니다. #####
-
-        self.dying_message=getattr(self.murderer, dying_message_type)
+        
+        if dying_message_type=="hair":
+            self.dying_message= f"머리스타일은 {getattr(self.murderer, dying_message_type)} 윽..☠️"
+        elif dying_message_type=="clothes":
+            self.dying_message= f"옷은 {getattr(self.murderer, dying_message_type)} 윽..☠️"
+        elif dying_message_type=="shoes":
+            self.dying_message= f"신발은 {getattr(self.murderer, dying_message_type)} 윽..☠️" 
         
 
         ######################################################################################################
@@ -131,14 +131,13 @@ class DetectiveGame:
 
         ##### 8. 사용자가 입력한 이름을 가진 용의자를 조사하려면 어떻게 해야 할까요? 반복문과 if문, 그리고 append 메서드를 활용해보세요! ########
 
-        # 이 줄부터 코드를 작성해주세요!
         for i in self.characters:
             if i.name==choice_name:
                 print(f"\n================용의자 {i.name}의 정보================")
                 print(f"{i.hair}..!")
                 print(f"{i.clothes}..!")
                 print(f"{i.shoes}..!")
-                self.clues.append(f"{i.name}씨는 {i.hair}. {i.clothes}. {i.shoes}.")
+                self.clues.append(f"{i.name}씨는 {i.hair}. {i.clothes}.. {i.shoes}..!")
                 return
 
         #####################################################################################
@@ -149,7 +148,6 @@ class DetectiveGame:
 
         ##### 9. 다시 잘 선택해보려면 어떤 단계로 돌아가야 할까요? 특정 함수를 재실행해봅시다. #################
 
-        # 이 줄부터 코드를 작성해주세요!
         self.investigate()
 
         #####################################################################################
@@ -168,13 +166,11 @@ class DetectiveGame:
                 return choice
             print("잘못된 입력입니다. 네 또는 아니오만 입력해 주세요.")
 
-
     def accuse(self):
         print("\n범인을 지목할 시간입니다.")
 
         ##### 10. self.characters 리스트의 각 항목을 인덱스와 함께 출력하세요. enumerate를 활용해보세요! ##########
 
-        # 이 줄부터 코드를 작성해주세요!
         for index, char in enumerate(self.characters, 1):
             print(f"{index}. {char.name}")
 
