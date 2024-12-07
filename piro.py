@@ -175,6 +175,8 @@ class DetectiveGame:
         ##### 10. self.characters 리스트의 각 항목을 인덱스와 함께 출력하세요. enumerate를 활용해보세요! ##########
 
         # 이 줄부터 코드를 작성해주세요!
+        for index, char in enumerate(self.characters, 1):
+            print(f"{index}. {char.name}")
 
         ###########################################################################################
 
