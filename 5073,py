@@ -1,12 +1,14 @@
-a=int(input())
-b=int(input())
-c=int(input())
-if a+b+c!=180:
-    print('Error')
-else:
-    if a==b==c==60:
-        print('Equilateral')
-    if a==b!=c or a!=b==c or c==a!=b:
-        print('Isosceles')
+while True:
+    a,b,c=map(int, input().split())
+    if a==b==c==0:
+        break
+    arr=[a,b,c]
+    if max(arr)>=(sum(arr)-max(arr)): #가장 긴 변이랑 나머지 두변이 같아도 삼각형 안만들어짐.
+        print('Invalid') #3번정도 틀렸는데 아무리 수정해도 안되더니 invalid를 invaild라고 써놔서 안되는 거였다 ...
     else:
-        print('Scalene')
+        if a==b==c:
+            print('Equilateral')
+        elif a==b or b==c or c==a:
+            print('Isosceles')
+        else:
+            print('Scalene')
