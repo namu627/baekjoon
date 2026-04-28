@@ -1,4 +1,4 @@
-import sys
+import sys #백준 서비스 종료로 인해 이걸 끝으로 백준은 마무리
 input=sys.stdin.readline
 
 def draw_stars(n):
